@@ -1,12 +1,18 @@
 #!/bin/bash
 
-YOU_USING=`echo $0`
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ $YOU_USING == "/bin/bash" ]; then
-	echo ". $SCRIPT_DIR/command_not_found_bash" >> $HOME/.bashrc
-elif [ $YOU_USING == "/bin/zsh" ]; then
-	echo ". $SCRIPT_DIR/command_not_found_bash" >> $HOME/.zshrc
-else
-	echo "Neither bash nor zsh are the default shell."
+echo $ZSH_VERSION
+
+if [ -n "$BASH_VERSION"  ]; then
+	echo "source $SCRIPT_DIR/command_not_found_bash" >> $HOME/.bashrc
+	echo "Added source to .bashrc"
+	FLAG=0
 fi
+if [ -n "$ZSH_VERSION" ]; then
+	echo "source $SCRIPT_DIR/command_not_found_bash" >> $HOME/.zshrc
+	echo "Added source to .zshrc"
+	FLAG=0
+fi
+
+[ $FLAG -ne 0 ] && echo "Could not find either bash nor zsh, exiting.." && exit 1
