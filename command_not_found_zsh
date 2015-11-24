@@ -1,7 +1,8 @@
 
 
 function command_not_found_handler {
-    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"	
+    CURRENT_DIR=${(%):-%x}
+    SCRIPT_DIR="$( cd "$( dirname "${CURRENT_DIR}" )" && pwd )"	
 	cat $SCRIPT_DIR/face.txt
 echo -E "
 ██╗   ██╗███╗   ██╗ █████╗  ██████╗ ██████╗███████╗██████╗ ████████╗ █████╗ ██████╗ ██╗     ███████╗██╗
@@ -14,4 +15,6 @@ echo -E "
 	which mpg123 > /dev/null
 	[ $? -ne 0 ]  &&  echo "Imagine lemongrab screaming here" && return
 	mpg123 -q $SCRIPT_DIR/lemonunacceptable.mp3 &
+
+    return 127
 }
