@@ -11,7 +11,15 @@ echo -E "
 ╚██████╔╝██║ ╚████║██║  ██║╚██████╗╚██████╗███████╗██║        ██║   ██║  ██║██████╔╝███████╗███████╗██╗
  ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝╚═╝        ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝
 "
-	which mpg123 > /dev/null
-	[ $? -ne 0 ]  &&  echo "Imagine lemongrab screaming here" && return
-	mpg123 -q $SCRIPT_DIR/lemonunacceptable.mp3 &
+    if type mpg123 > /dev/null; then 
+        mpg123 -q $SCRIPT_DIR/lemonunacceptable.mp3 & 
+        return 127
+    fi
+    if type afplay > /dev/null; then
+         afplay -q $SCRIPT_DIR/lemonunacceptable.mp3 &
+         return 127
+    fi
+
+    echo "Imagine lemongrab screaming here"
+    return 127
 }
