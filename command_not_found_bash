@@ -16,7 +16,7 @@ echo -E "
         return 127
     fi
     if type afplay > /dev/null; then
-         afplay -q $SCRIPT_DIR/lemonunacceptable.mp3 &
+         afplay $SCRIPT_DIR/lemonunacceptable.mp3 &
          return 127
     fi
 
