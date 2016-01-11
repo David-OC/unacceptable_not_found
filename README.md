@@ -1,12 +1,21 @@
 # unacceptable_not_found
-This re-writes the command_not_found function in bash and zsh 
+Re-writes the command_not_found handler in bash and zsh 
 
 ##You must heed my INSTRUCTIONS!!!!!!!!
 
-Run the addsource.bash script to source the bash or zsh function when you login.
+Run the addsource.sh script with your preferred shell to source the handler when you login.
 
-Next time you login and run a command that cannot be found, you should be told that your input is unacceptable.
+Sound works by default on Mac OS X (tested on 10.10 & 10.11).
+Sound on Linux requires mpg123.
 
-Results should be like the video below:
+To install on Debian/Ubuntu:
+
+sudo apt-get install mpg123
+
+For Fedora 22/23:
+
+sudo dnf install mpg123
+
+Results should match the video below on either OS:
 
 https://youtu.be/gfChLvMZkG0
